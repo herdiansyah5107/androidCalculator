@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/activity_main2.xml" value="0.33" />
+        <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/activity_splas_screen.xml" value="0.13958333333333334" />
+        <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
+        <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/activity_toast.xml" value="0.134375" />
+        <entry key="..\:/Bootcamp/HDSKalkulator/app/src/main/res/layout/toast.xml" value="0.25" />
       </map>
     </option>
   </component>

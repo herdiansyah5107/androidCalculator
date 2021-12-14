@@ -3,18 +3,24 @@ package com.example.hdskalkulator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7,
-            btn8, btn9, btnhasil, btnbagi, btnkali, btnkurang, btnc,btntambah;
+            btn8, btn9, btnhasil, btnbagi, btnkali, btnkurang, btnc,btntambah, btnToast;
     TextView counterText;
     Integer angkaPertama,angkaKedua;
     Integer hasilAKhir;
-    String Type;
+    String Type,tampunganOprasi;
+    View toast;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btnkurang = findViewById(R.id.btnkurang);
         btnc = findViewById(R.id.btnc);
         counterText = findViewById(R.id.counterText);
+        btnToast=findViewById(R.id.btnToast);
 
         nolOnClicklistaner();
         satuOnClicklistaner();
@@ -53,6 +60,31 @@ public class MainActivity extends AppCompatActivity {
         kaliOnClicklistaner();
         kurangOnClicklistaner();
         resetlOnClicklistaner();
+        toastOnClickListener();
+
+
+    }
+
+    private void toastOnClickListener(){
+       btnToast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //menampilkan gambar
+                LayoutInflater inflater = getLayoutInflater();
+                View layout  =inflater.inflate(R.layout.toast,
+                    (ViewGroup)findViewById(R.id.layouttoast));
+                //untuk memunculkan toast
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "This is a message displayed in a Toast",
+                        Toast.LENGTH_SHORT);
+                //meampilkan gambar
+                toast.setView(layout);
+                toast.show();
+
+            }
+
+
+       });
 
 
     }
@@ -102,31 +134,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void hasilbtnOnClicklistaner() {
         btnhasil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (Type) {
-                    case "tambah":
-                        angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
-                        hasilAKhir = angkaPertama + angkaKedua;
-                        counterText.setText(String.valueOf(hasilAKhir));
-                        break;
-                    case "bagi":
-                        angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
-                        hasilAKhir = angkaPertama / angkaKedua;
-                        counterText.setText(String.valueOf(hasilAKhir));
-                        break;
-                    case "kali":
-                        angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
-                        hasilAKhir = angkaPertama * angkaKedua;
-                        counterText.setText(String.valueOf(hasilAKhir));
-                        break;
-                    case "kurang":
-                        angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
-                        hasilAKhir = angkaPertama - angkaKedua;
-                        counterText.setText(String.valueOf(hasilAKhir));
-                        break;
+                if ("tambah".equals(Type)) {
+                    angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
+                    hasilAKhir = angkaPertama + angkaKedua;
+                    counterText.setText(String.valueOf(hasilAKhir));
+                } else if ("bagi".equals(Type)) {
+                    angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
+                    hasilAKhir = angkaPertama / angkaKedua;
+                    counterText.setText(String.valueOf(hasilAKhir));
+                } else if ("kali".equals(Type)) {
+                    angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
+                    hasilAKhir = angkaPertama * angkaKedua;
+                    counterText.setText(String.valueOf(hasilAKhir));
+                } else if ("kurang".equals(Type)) {
+                    angkaKedua = Integer.parseInt(counterText.getText().toString().trim());
+                    hasilAKhir = angkaPertama - angkaKedua;
+                    counterText.setText(String.valueOf(hasilAKhir));
                 }
                 Type="hasil";
             }
@@ -156,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
     private void satuOnClicklistaner() {
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
+
                if(counterText.getText()!="0"&& Type=="hasil"){
                     counterText.setText(String.valueOf(Integer.parseInt(counterText.getText().toString())+"1"));
                 }else if(counterText.getText().equals("0")||  Type=="hasil"){
@@ -277,6 +307,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        //versi pak paulus
+
+
+
 
     }
 }
